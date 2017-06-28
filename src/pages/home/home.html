@@ -1,14 +1,17 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      UoD CommsCards
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
+  Welcome to the University of Dundee's Communication Skills study app.
   <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
+    Press the <b>Study</b> button below to begin, or use the other buttons below for more information
   </p>
+
+  <button ion-button block icon-end [navPush]="aboutPg">About <ion-icon name="information-circle"></ion-icon></button>
+  <button ion-button block icon-end [navPush]="usefulLinksPg">Useful Links <ion-icon name="link"></ion-icon></button>
 </ion-content>
