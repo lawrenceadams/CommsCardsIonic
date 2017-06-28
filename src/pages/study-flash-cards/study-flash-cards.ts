@@ -8,11 +8,58 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class StudyFlashCardsPage {
 
-  sortCardsBy: string;
-  selectedSuboption: string;
+  selectedQuery: string;
+  selectedSubquery: string[];
 
-  sortByOptions: string[] = ["Year", "System", "Type"];
-  sortBySuboptions: string[];
+  // sortByOptions defines the main query.
+  sortByOptions: any = [
+    { title: "Year", internal: "year" },
+    { title: "System", internal: "system" },
+    { title: "Type", internal: "type" }
+  ];
+  // Avalaible Subqueries
+  yearSubOptions = [
+    { title: "Year 1", internal: 1 },
+    { title: "Year 2", internal: 2 },
+    { title: "Year 3", internal: 3 }
+  ]
+  systemSubOptions = [
+    { title: "Principles", internal: "princ" },
+    { title: "Respiratory", internal: "resp" },
+    { title: "Cardiovascular", internal: "cardio" },
+    { title: "Gastroenterology", internal: "gi" },
+    { title: "Dermatology", internal: "derm" },
+    // { title: "Musculoskeletal", internal: "msk" }, // No cards currently
+    { title: "Endocrine", internal: "endo" },
+    { title: "Child and Family", internal: "paeds" },
+    { title: "Ophthalmology", internal: "ophthal" },
+    { title: "Ear, Nose, Throat", internal: "ent" },
+    { title: "Renal", internal: "renal" },
+    { title: "Urology", internal: "urol" },
+    { title: "Ageing", internal: "age" },
+    { title: "Neurology", internal: "neuro" },
+    { title: "Psychiatry", internal: "psych" },
+    { title: "Obstetrics and Gynaecology", internal: "obgyn" },
+    { title: "Haematology", internal: "haem" },
+    { title: "Microbiology", internal: "microbio" },
+    { title: "Pharmacology", internal: "pharma" },
+    { title: "Ethics and Law", internal: "ethlaw" },
+    { title: "General Practice", internal: "GP" },
+    { title: "Public Health", internal: "pubhealth" },
+    { title: "Radiology", internal: "radiol" }
+  ]
+  typeSubOptions = [
+    { title: "Risk", internal: "risk" },
+    { title: "Health Promotion", internal: "healthpromo" },
+    { title: "Types of Consultation/Skills", internal: "typesofconsul" },
+    { title: "Interpreting Results", internal: "interpret" },
+    { title: "Consent and Procedures", internal: "consentproc" },
+    { title: "Explaining and Planning", internal: "explainplan" },
+    { title: "Explaining Diseases", internal: "explaindisease" }
+  ]
+
+  // Defines the avaliable suboptions (i.e. each avaliable year)
+  sortBySuboptions: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -20,9 +67,9 @@ export class StudyFlashCardsPage {
   ionViewDidLoad() {
     // Set default sort option to year
     // Other options: system, type.
-    this.sortCardsBy = "Year";
+    this.selectedQuery = "year";
     console.log('ionViewDidLoad StudyFlashCardsPage');
-    this.updateSelectSuboptions(this.sortCardsBy);
+    this.updateSelectSuboptions(this.selectedQuery);
   }
 
   onSortOptionChange(selectedValue: string) {
@@ -33,19 +80,21 @@ export class StudyFlashCardsPage {
   updateSelectSuboptions(queryselector: string) {
     // Manipulate sortBySuboptions to give user options to choose what cards.
     // TODO Build a better way of selecting options...
-    if (queryselector === "Year") {
-      this.sortBySuboptions = ["Year 1", "Year 2", "Year 3"];
-    } else if (queryselector === "System") {
-      this.sortBySuboptions = ["Principles", "Respiratory", "etc..."];
-    } else if (queryselector === "Type") {
-      this.sortBySuboptions = ["Breaking Badnews", "Blah", "Blah"];
+    console.log(queryselector);
+    if (queryselector === "year") {
+      this.sortBySuboptions = this.yearSubOptions;
+    } else if (queryselector === "system") {
+      this.sortBySuboptions = this.systemSubOptions;
+    } else if (queryselector === "type") {
+      // this.sortBySuboptions = ["Breaking Badnews", "Blah", "Blah"];
     } else {
       console.error("Something has gone badly wrong. This should not be possible.");
     }
   }
 
-  onSuboptionSelect(queryselector: string) {
+  onSuboptionSelect(queryselector: string[]) {
     console.log(queryselector + " selected.");
+    this.selectedSubquery = queryselector;
   }
 
 
