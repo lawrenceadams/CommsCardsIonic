@@ -11,16 +11,14 @@
       <ion-item-divider>Sort By</ion-item-divider>
       <ion-item>
         <ion-label>Sort Cards By</ion-label>
-        <ion-select [(ngModel)]="sortCardsBy">
-          <ion-option value="Year">Year</ion-option>
-          <ion-option value="System">System</ion-option>
-          <ion-option value="Type">Type</ion-option>
+        <ion-select [(ngModel)]="sortCardsBy" (ionChange)="onSortOptionChange($event)">
+          <ion-option *ngFor="let option of sortByOptions" [value]="option">{{option}}</ion-option>
         </ion-select>
       </ion-item>
       <ion-item>
         <ion-label>Select {{sortCardsBy}}</ion-label>
-        <ion-select [(ngModel)]="sortCardsBy">
-          <!--TODO NGFOR EACH SELECTION OPTION-->
+        <ion-select [(ngModel)]="selectedSuboption" multiple="true" (ionChange)="onSuboptionSelect($event)">
+          <ion-option *ngFor="let option of sortBySuboptions" [value]="option">{{option}}</ion-option>
         </ion-select>
       </ion-item>
     </ion-item-group>
