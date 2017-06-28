@@ -6,11 +6,27 @@
 
 </ion-header>
 <ion-content>
-
   <ion-list>
-    <button ion-item [navPush]="studyByYearPg">Study by Year</button>
-    <button ion-item [navPush]="studyBySystemPg">Study by System</button>
-    <button ion-item [navPush]="studyByTypePg">Study by Card Type</button>
+    <ion-item-group>
+      <ion-item-divider>Sort By</ion-item-divider>
+      <ion-item>
+        <ion-label>Sort Cards By</ion-label>
+        <ion-select [(ngModel)]="sortCardsBy">
+          <ion-option value="Year">Year</ion-option>
+          <ion-option value="System">System</ion-option>
+          <ion-option value="Type">Type</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Select {{sortCardsBy}}</ion-label>
+        <ion-select [(ngModel)]="sortCardsBy">
+          <!--TODO NGFOR EACH SELECTION OPTION-->
+        </ion-select>
+      </ion-item>
+    </ion-item-group>
+    <ion-item-group>
+      <ion-item-divider>Cards</ion-item-divider>
+      <!-- TODO !!-->
+    </ion-item-group>
   </ion-list>
-
 </ion-content>
