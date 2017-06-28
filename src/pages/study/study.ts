@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the StudyPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+import { StudyFlashCardsPage } from "../study-flash-cards/study-flash-cards";
+import { StudyOsceScenariosPage } from "../study-osce-scenarios/study-osce-scenarios";
+
 @IonicPage()
 @Component({
   selector: 'page-study',
@@ -14,11 +11,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class StudyPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  studyFlashCardsPg = StudyFlashCardsPage;
+  studyOSCEScenariosPg = StudyOsceScenariosPage;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad StudyPage');
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
 }

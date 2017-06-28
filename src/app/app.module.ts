@@ -10,6 +10,8 @@ import { HomePage } from '../pages/home/home';
 import { AboutPage } from "../pages/about/about";
 import { UsefulLinksPage } from "../pages/useful-links/useful-links";
 import { StudyPage } from "../pages/study/study";
+import { StudyFlashCardsPage } from "../pages/study-flash-cards/study-flash-cards";
+import { StudyOsceScenariosPage } from "../pages/study-osce-scenarios/study-osce-scenarios";
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { StudyPage } from "../pages/study/study";
     AboutPage,
     UsefulLinksPage,
     TabsPage,
-    StudyPage
+    StudyPage,
+    StudyFlashCardsPage,
+    StudyOsceScenariosPage
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,9 @@ import { StudyPage } from "../pages/study/study";
     AboutPage,
     UsefulLinksPage,
     TabsPage,
-    StudyPage
+    StudyPage,
+    StudyFlashCardsPage,
+    StudyOsceScenariosPage
   ],
   providers: [
     StatusBar,

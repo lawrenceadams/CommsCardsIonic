@@ -7,12 +7,13 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>study</ion-title>
+    <ion-title>Study</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <button ion-button block icon-end [navPush]="studyFlashCardsPg">Flash Cards <ion-icon name="flash"></ion-icon></button>
+  <button ion-button block icon-end [navPush]="studyOSCEScenariosPg">OSCE Scenarios <ion-icon name="chatbubbles"></ion-icon></button>
 </ion-content>
