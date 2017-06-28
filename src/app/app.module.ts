@@ -11,6 +11,9 @@ import { AboutPage } from "../pages/about/about";
 import { UsefulLinksPage } from "../pages/useful-links/useful-links";
 import { StudyPage } from "../pages/study/study";
 import { StudyFlashCardsPage } from "../pages/study-flash-cards/study-flash-cards";
+import { StudyBySystemPage } from "../pages/study-flash-cards/study-by-system/study-by-system";
+import { StudyByTypePage } from "../pages/study-flash-cards/study-by-type/study-by-type";
+import { StudyByYearPage } from "../pages/study-flash-cards/study-by-year/study-by-year";
 import { StudyOsceScenariosPage } from "../pages/study-osce-scenarios/study-osce-scenarios";
 
 @NgModule({
@@ -22,7 +25,10 @@ import { StudyOsceScenariosPage } from "../pages/study-osce-scenarios/study-osce
     TabsPage,
     StudyPage,
     StudyFlashCardsPage,
-    StudyOsceScenariosPage
+    StudyOsceScenariosPage,
+    StudyBySystemPage,
+    StudyByTypePage,
+    StudyByYearPage
   ],
   imports: [
     BrowserModule,
@@ -37,7 +43,10 @@ import { StudyOsceScenariosPage } from "../pages/study-osce-scenarios/study-osce
     TabsPage,
     StudyPage,
     StudyFlashCardsPage,
-    StudyOsceScenariosPage
+    StudyOsceScenariosPage,
+    StudyBySystemPage,
+    StudyByTypePage,
+    StudyByYearPage
   ],
   providers: [
     StatusBar,
