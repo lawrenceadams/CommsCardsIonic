@@ -14,15 +14,11 @@ export class FlashCardViewerPage {
   public currentCard: Card;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public service: DataServiceProvider) {
+    this.data = this.navParams.get('data');
+    this.currentCard = this.service.getCards()[this.data];
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad FlashCardViewerPage');
-    this.data = this.navParams.get('data');
-    this.currentCard = this.service.getCards()[this.data];
-    console.log("[FlashCardViewer]: " + this.currentCard.id);
   }
-
-
 
 }

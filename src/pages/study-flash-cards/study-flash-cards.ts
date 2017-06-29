@@ -11,6 +11,7 @@ import { Card } from "../../common/card.model";
   templateUrl: 'study-flash-cards.html',
 })
 export class StudyFlashCardsPage {
+  sortCardsBy: any;
 
   selectedQuery: string;
   selectedSubquery: string[];
@@ -74,6 +75,7 @@ export class StudyFlashCardsPage {
     // Set default sort option to year
     // Other options: system, type.
     this.selectedQuery = "year";
+    this.sortCardsBy = "year";
     console.log('ionViewDidLoad StudyFlashCardsPage');
     this.updateSelectSuboptions(this.selectedQuery);
   }
