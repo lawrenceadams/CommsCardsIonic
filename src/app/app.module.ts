@@ -15,6 +15,7 @@ import { FlashCardViewerPage } from "../pages/study-flash-cards/flash-card-viewe
 import { StudyOsceScenariosPage } from "../pages/study-osce-scenarios/study-osce-scenarios";
 import { DataServiceProvider } from '../providers/data-service/data-service';
 import { FlashCardComponent } from '../components/flash-card/flash-card';
+import { SafeHTMLPipe } from "../common/htmlSanitizer.pipe";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FlashCardComponent } from '../components/flash-card/flash-card';
     StudyFlashCardsPage,
     StudyOsceScenariosPage,
     FlashCardViewerPage,
-    FlashCardComponent
+    FlashCardComponent,
+    SafeHTMLPipe
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,8 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { ToastController } from "ionic-angular";
 
+import { SafeHTMLPipe } from "../../common/htmlSanitizer.pipe";
+
 @Component({
   selector: 'flash-card',
   templateUrl: 'flash-card.html'

@@ -1,0 +1,84 @@
+/*
+  Icon Font: med-icons
+*/
+
+@font-face {
+  font-family: "med-icons";
+  src: url("./med-icons_7fee3166efd9da43a6a34a73b451ce2c.eot");
+  src: url("./med-icons_7fee3166efd9da43a6a34a73b451ce2c.eot?#iefix") format("embedded-opentype"),
+       url("./med-icons_7fee3166efd9da43a6a34a73b451ce2c.woff2") format("woff2"),
+       url("./med-icons_7fee3166efd9da43a6a34a73b451ce2c.woff") format("woff"),
+       url("./med-icons_7fee3166efd9da43a6a34a73b451ce2c.ttf") format("truetype"),
+       url("./med-icons_7fee3166efd9da43a6a34a73b451ce2c.svg#med-icons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "med-icons";
+    src: url("./med-icons_7fee3166efd9da43a6a34a73b451ce2c.svg#med-icons") format("svg");
+  }
+}
+
+[data-icon]:before { content: attr(data-icon); }
+
+[data-icon]:before,
+.m-age:before,
+.m-cardio:before,
+.m-derm:before,
+.m-endo:before,
+.m-ent:before,
+.m-ethlaw:before,
+.m-gi:before,
+.m-gp:before,
+.m-haem:before,
+.m-microbio:before,
+.m-neuro:before,
+.m-obgyn:before,
+.m-ophthal:before,
+.m-paeds:before,
+.m-pharma:before,
+.m-princ:before,
+.m-psych:before,
+.m-pubhealth:before,
+.m-radiol:before,
+.m-renal:before,
+.m-resp:before,
+.m-urol:before {
+  display: inline-block;
+  font-family: "med-icons";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+.m-age:before { content: "\f115"; }
+.m-cardio:before { content: "\f116"; }
+.m-derm:before { content: "\f117"; }
+.m-endo:before { content: "\f118"; }
+.m-ent:before { content: "\f119"; }
+.m-ethlaw:before { content: "\f11a"; }
+.m-gi:before { content: "\f11b"; }
+.m-gp:before { content: "\f11c"; }
+.m-haem:before { content: "\f11d"; }
+.m-microbio:before { content: "\f12a"; }
+.m-neuro:before { content: "\f11e"; }
+.m-obgyn:before { content: "\f11f"; }
+.m-ophthal:before { content: "\f120"; }
+.m-paeds:before { content: "\f121"; }
+.m-pharma:before { content: "\f122"; }
+.m-princ:before { content: "\f123"; }
+.m-psych:before { content: "\f124"; }
+.m-pubhealth:before { content: "\f125"; }
+.m-radiol:before { content: "\f126"; }
+.m-renal:before { content: "\f127"; }
+.m-resp:before { content: "\f128"; }
+.m-urol:before { content: "\f129"; }
