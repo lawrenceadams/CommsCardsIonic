@@ -9,6 +9,6 @@
 
 <ion-content>
     <div style="height:100%; width:100%; display: flex;">
-        <flash-card style="margin: auto auto;" [activeCard]="currentCard" (cardSwipeEvent)="onCardSwipeEvent($event)"></flash-card>
+        <flash-card [@flyInOut]="flyInOutState" style="margin: auto auto;" [activeCard]="currentCard" (cardSwipeEvent)="onCardSwipeEvent($event)"></flash-card>
     </div>
 </ion-content>

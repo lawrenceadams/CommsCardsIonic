@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, trigger, state, style, transition, animate, keyframes } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { DataServiceProvider } from "../../../providers/data-service/data-service";
@@ -7,6 +7,19 @@ import { Card } from "../../../common/card.model";
 @Component({
   selector: 'page-flash-card-viewer',
   templateUrl: 'flash-card-viewer.html',
+  animations: [
+    trigger('flyInOut', [
+      state('in', style({
+        transform: 'translate3d(0, 0, 0)'
+      })),
+      state('out', style({
+        transform: 'translate3d(150%, 0, 0)'
+      })),
+      transition('in => out', animate('200ms ease-in')),
+      transition('out => in', animate('200ms ease-out'))
+    ]),
+
+  ]
 })
 export class FlashCardViewerPage {
 
@@ -14,6 +27,8 @@ export class FlashCardViewerPage {
   private currentCards: Card[];
 
   public currentCard: Card;
+
+  flyInOutState: String = 'in';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public service: DataServiceProvider) {
     this.activeCardIndex = this.navParams.get('data');
@@ -41,6 +56,8 @@ export class FlashCardViewerPage {
     }
     console.log(this.activeCardIndex);
     this.updateCurrentCard();
+
+    this.flyInOutState = "out";
   }
 
   updateCurrentCard() {
