@@ -10,24 +10,41 @@ import { Card } from "../../../common/card.model";
 })
 export class FlashCardViewerPage {
 
-  data: any;
+  private activeCardIndex: number;
+  private currentCards: Card[];
+
   public currentCard: Card;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public service: DataServiceProvider) {
-    this.data = this.navParams.get('data');
-    this.currentCard = this.service.getCards()[this.data];
-  }
+    this.activeCardIndex = this.navParams.get('data');
+    this.currentCards = this.service.getCards();
 
-  ionViewDidLoad() {
+    this.updateCurrentCard();
   }
 
   onCardSwipeEvent(e) {
-    if (e === "next ") {
-      // TODO Next card.
+    if (e === "next") {
       console.log("[FlashCardViewerPage] Next card.");
-    } else {
+      this.activeCardIndex += 1;
+      // Check if we have run out of cards to go through
+      if (this.activeCardIndex > this.currentCards.length - 1) {
+        // Reset back to the beginning!
+        this.activeCardIndex = 0;
+      }
+    } else if (e === "previous") {
       console.log("[FlashCardViewerPage] Previous card.");
+      this.activeCardIndex -= 1;
+      if (this.activeCardIndex < 0) {
+        this.activeCardIndex = this.currentCards.length - 1;
+        // TODO Notify user.
+      }
     }
+    console.log(this.activeCardIndex);
+    this.updateCurrentCard();
+  }
+
+  updateCurrentCard() {
+    this.currentCard = this.currentCards[this.activeCardIndex]
   }
 
 }

@@ -4,7 +4,7 @@
       <div class="front" [innerHTML]="activeCard.front" (click)="toggleFlip()" (swipe)="swiped($event)">
         <!-- front content -->
       </div>
-      <div class="back" [innerHTML]="activeCard.back" (click)="toggleFlip()">
+      <div class="back" [innerHTML]="activeCard.back" (click)="toggleFlip()" (swipe)="swiped($event)">
         <!-- back content -->
       </div>
     </div>
