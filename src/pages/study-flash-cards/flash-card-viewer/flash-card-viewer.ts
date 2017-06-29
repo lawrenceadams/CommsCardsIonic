@@ -12,11 +12,14 @@ import { Card } from "../../../common/card.model";
       state('in', style({
         transform: 'translate3d(0, 0, 0)'
       })),
-      state('out', style({
+      state('right', style({
+        transform: 'translate3d(-150%, 0, 0)'
+      })),
+      state('left', style({
         transform: 'translate3d(150%, 0, 0)'
       })),
-      transition('in => out', animate('200ms ease-in')),
-      transition('out => in', animate('200ms ease-out'))
+      transition('in => *', animate('200ms ease-in')),
+      transition('* => in', animate('200ms ease-out'))
     ]),
 
   ]
@@ -44,6 +47,7 @@ export class FlashCardViewerPage {
     if (e === "next") {
       console.log("[FlashCardViewerPage] Next card.");
       this.activeCardIndex += 1;
+      this.flyInOutState = "right";
       // Check if we have run out of cards to go through
       if (this.activeCardIndex > this.currentCards.length - 1) {
         // Reset back to the beginning!
@@ -52,6 +56,7 @@ export class FlashCardViewerPage {
     } else if (e === "previous") {
       console.log("[FlashCardViewerPage] Previous card.");
       this.activeCardIndex -= 1;
+      this.flyInOutState = "left";
       if (this.activeCardIndex < 0) {
         this.activeCardIndex = this.currentCards.length - 1;
         // TODO Notify user.
@@ -62,7 +67,6 @@ export class FlashCardViewerPage {
   }
 
   updateCurrentCard() {
-    this.flyInOutState = "out";
     setTimeout(() => {
       this.currentCard = this.currentCards[this.activeCardIndex]
       this.flyInOutState = "in";
