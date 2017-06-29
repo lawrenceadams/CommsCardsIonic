@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+
 import { DataServiceProvider } from "../../providers/data-service/data-service";
+import { FlashCardViewerPage } from "./flash-card-viewer/flash-card-viewer";
 
 import { Card } from "../../common/card.model";
 
@@ -106,5 +108,9 @@ export class StudyFlashCardsPage {
     console.log(this.foundCards);
   }
 
+  onItemClick(index) {
+    console.log('[StudyFlashCards.html] Selected card index: ' + index);
+    this.navCtrl.push(FlashCardViewerPage, { data: index });
+  }
 
 }

@@ -68,7 +68,6 @@ export class DataServiceProvider {
     } else {
       console.error("Route was likely set to an unknown search type")
     }
-    // console.log(this.cards);
   }
 
   /**

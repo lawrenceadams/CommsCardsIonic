@@ -11,6 +11,7 @@ import { AboutPage } from "../pages/about/about";
 import { UsefulLinksPage } from "../pages/useful-links/useful-links";
 import { StudyPage } from "../pages/study/study";
 import { StudyFlashCardsPage } from "../pages/study-flash-cards/study-flash-cards";
+import { FlashCardViewerPage } from "../pages/study-flash-cards/flash-card-viewer/flash-card-viewer";
 import { StudyOsceScenariosPage } from "../pages/study-osce-scenarios/study-osce-scenarios";
 import { DataServiceProvider } from '../providers/data-service/data-service';
 
@@ -23,7 +24,8 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
     TabsPage,
     StudyPage,
     StudyFlashCardsPage,
-    StudyOsceScenariosPage
+    StudyOsceScenariosPage,
+    FlashCardViewerPage
   ],
   imports: [
     BrowserModule,
@@ -38,8 +40,8 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
     TabsPage,
     StudyPage,
     StudyFlashCardsPage,
-    StudyOsceScenariosPage
-
+    StudyOsceScenariosPage,
+    FlashCardViewerPage
   ],
   providers: [
     StatusBar,
