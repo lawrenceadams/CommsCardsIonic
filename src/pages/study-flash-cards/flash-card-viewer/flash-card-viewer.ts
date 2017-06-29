@@ -1,4 +1,4 @@
-import { Component, trigger, state, style, transition, animate, keyframes } from '@angular/core';
+import { Component, trigger, state, style, transition, animate } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { DataServiceProvider } from "../../../providers/data-service/data-service";
