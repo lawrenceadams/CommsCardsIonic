@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 declare let cordova: any;
 
-@IonicPage()
 @Component({
   selector: 'page-useful-links',
   templateUrl: 'useful-links.html',

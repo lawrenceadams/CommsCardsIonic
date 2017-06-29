@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
-@IonicPage()
 @Component({
   selector: 'page-study-flash-cards',
   templateUrl: 'study-flash-cards.html',
@@ -86,7 +85,7 @@ export class StudyFlashCardsPage {
     } else if (queryselector === "system") {
       this.sortBySuboptions = this.systemSubOptions;
     } else if (queryselector === "type") {
-      // this.sortBySuboptions = ["Breaking Badnews", "Blah", "Blah"];
+      this.sortBySuboptions = this.typeSubOptions;
     } else {
       console.error("Something has gone badly wrong. This should not be possible.");
     }
