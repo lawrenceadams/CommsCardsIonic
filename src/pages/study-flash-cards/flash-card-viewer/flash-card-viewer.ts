@@ -34,7 +34,10 @@ export class FlashCardViewerPage {
     this.activeCardIndex = this.navParams.get('data');
     this.currentCards = this.service.getCards();
 
-    this.updateCurrentCard();
+    // this.updateCurrentCard();
+
+    // Need to do this by hand in order to avoid the setTimeout causing an undefined error.
+    this.currentCard = this.currentCards[this.activeCardIndex]
   }
 
   onCardSwipeEvent(e) {
@@ -56,12 +59,14 @@ export class FlashCardViewerPage {
     }
     console.log(this.activeCardIndex);
     this.updateCurrentCard();
-
-    this.flyInOutState = "out";
   }
 
   updateCurrentCard() {
-    this.currentCard = this.currentCards[this.activeCardIndex]
+    this.flyInOutState = "out";
+    setTimeout(() => {
+      this.currentCard = this.currentCards[this.activeCardIndex]
+      this.flyInOutState = "in";
+    }, 200);
   }
 
 }
