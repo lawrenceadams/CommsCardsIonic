@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'flash-card',
@@ -6,10 +6,17 @@ import { Component } from '@angular/core';
 })
 export class FlashCardComponent {
 
+  @Input() activeCard;
+
   text: string;
+  public isFlipped: boolean = false;
 
   constructor() {
 
+  }
+
+  toggleFlip() {
+    this.isFlipped = !this.isFlipped;
   }
 
 }
