@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { DataServiceProvider } from "../../providers/data-service/data-service";
+
+import { Card } from "../../common/card.model";
 
 @Component({
   selector: 'page-study-flash-cards',
@@ -9,6 +12,8 @@ export class StudyFlashCardsPage {
 
   selectedQuery: string;
   selectedSubquery: string[];
+
+  foundCards: Card[];
 
   // sortByOptions defines the main query.
   sortByOptions: any = [
@@ -60,7 +65,7 @@ export class StudyFlashCardsPage {
   // Defines the avaliable suboptions (i.e. each avaliable year)
   sortBySuboptions: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private service: DataServiceProvider) {
   }
 
   ionViewDidLoad() {
@@ -95,6 +100,10 @@ export class StudyFlashCardsPage {
   onSuboptionSelect(queryselector: string[]) {
     console.log(queryselector + " selected.");
     this.selectedSubquery = queryselector;
+    this.service.setQuery(this.selectedQuery, this.selectedSubquery);
+    this.foundCards = this.service.getCards();
+
+    console.log(this.foundCards);
   }
 
 

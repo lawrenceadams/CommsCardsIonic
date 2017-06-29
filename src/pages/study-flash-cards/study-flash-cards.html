@@ -24,7 +24,10 @@
     </ion-item-group>
     <ion-item-group>
       <ion-item-divider>Cards</ion-item-divider>
-      <!-- TODO !!-->
+      <!-- The card selector for every card found. -->
+      <button ion-item text-wrap *ngFor="let item of foundCards">
+        {{ item.title }}
+      </button>
     </ion-item-group>
   </ion-list>
 </ion-content>

@@ -12,6 +12,7 @@ import { UsefulLinksPage } from "../pages/useful-links/useful-links";
 import { StudyPage } from "../pages/study/study";
 import { StudyFlashCardsPage } from "../pages/study-flash-cards/study-flash-cards";
 import { StudyOsceScenariosPage } from "../pages/study-osce-scenarios/study-osce-scenarios";
+import { DataServiceProvider } from '../providers/data-service/data-service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { StudyOsceScenariosPage } from "../pages/study-osce-scenarios/study-osce
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    DataServiceProvider
   ]
 })
 export class AppModule { }
