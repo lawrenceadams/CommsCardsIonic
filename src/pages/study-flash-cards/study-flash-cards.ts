@@ -74,6 +74,7 @@ export class StudyFlashCardsPage {
   onSortOptionChange(selectedValue: string) {
     console.log(selectedValue + " chosen.");
     this.updateSelectSuboptions(selectedValue);
+    this.selectedQuery = selectedValue;
   }
 
   updateSelectSuboptions(queryselector: string) {
