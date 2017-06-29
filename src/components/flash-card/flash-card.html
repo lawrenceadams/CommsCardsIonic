@@ -1,7 +1,7 @@
 <div class="card-container">
   <div class="flip-container" [class.flip]="isFlipped" [class.fadeOut]="isFadeOut">
     <div class="flipper" [class.noanimate]="isNotAnimating">
-      <div class="front" [innerHTML]="activeCard.front" (click)="toggleFlip()">
+      <div class="front" [innerHTML]="activeCard.front" (click)="toggleFlip()" (swipe)="swiped($event)">
         <!-- front content -->
       </div>
       <div class="back" [innerHTML]="activeCard.back" (click)="toggleFlip()">

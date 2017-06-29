@@ -14,7 +14,7 @@ flash-card {
     overflow: hidden;
     }
 
-    :host /deep/ {
+
     .back {
         li {
         padding: 0px 30px 0px 20px;
@@ -45,7 +45,6 @@ flash-card {
         width: 1.2em;
         /*color: ;*/
         }
-    }
     .front li {
         text-align: left !important;
     }
@@ -159,7 +158,7 @@ flash-card {
     .flip-container, .front, .back {
         width: 90vw;
         /* Bigger cards on mobile to maximise screen space*/
-        height: 80vh;
+        height: 70vh;
     }
     }
 

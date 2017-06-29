@@ -21,4 +21,13 @@ export class FlashCardViewerPage {
   ionViewDidLoad() {
   }
 
+  onCardSwipeEvent(e) {
+    if (e === "next ") {
+      // TODO Next card.
+      console.log("[FlashCardViewerPage] Next card.");
+    } else {
+      console.log("[FlashCardViewerPage] Previous card.");
+    }
+  }
+
 }
