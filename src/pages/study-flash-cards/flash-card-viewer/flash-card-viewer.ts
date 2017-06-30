@@ -1,5 +1,5 @@
 import { Component, trigger, state, style, transition, animate } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 
 import { DataServiceProvider } from "../../../providers/data-service/data-service";
 import { Card } from "../../../common/card.model";
@@ -33,7 +33,11 @@ export class FlashCardViewerPage {
 
   flyInOutState: String = 'in';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public service: DataServiceProvider) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public service: DataServiceProvider,
+    public toastCtrl: ToastController) {
     this.activeCardIndex = this.navParams.get('data');
     this.currentCards = this.service.getCards();
 
@@ -52,6 +56,7 @@ export class FlashCardViewerPage {
       if (this.activeCardIndex > this.currentCards.length - 1) {
         // Reset back to the beginning!
         this.activeCardIndex = 0;
+        this.notifyUser("Jumping to the beginning of selected cards.")
       }
     } else if (e === "previous") {
       console.log("[FlashCardViewerPage] Previous card.");
@@ -59,7 +64,7 @@ export class FlashCardViewerPage {
       this.flyInOutState = "left";
       if (this.activeCardIndex < 0) {
         this.activeCardIndex = this.currentCards.length - 1;
-        // TODO Notify user.
+        this.notifyUser("Jumping to the end of selected cards.")
       }
     }
     console.log(this.activeCardIndex);
@@ -71,6 +76,15 @@ export class FlashCardViewerPage {
       this.currentCard = this.currentCards[this.activeCardIndex]
       this.flyInOutState = "in";
     }, 200);
+  }
+
+  private notifyUser(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
   }
 
 }
