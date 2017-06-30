@@ -25,7 +25,7 @@ export class StudyOsceScenariosPage {
   }
 
   onItemClick(itemIndex) {
-    this.app.getRootNav().push(OsceScenarioViewer, { data: itemIndex });
+    this.navCtrl.push(OsceScenarioViewer, { data: itemIndex });
   }
 
 }

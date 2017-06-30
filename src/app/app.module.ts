@@ -14,11 +14,13 @@ import { StudyPage } from "../pages/study/study";
 import { StudyFlashCardsPage } from "../pages/study-flash-cards/study-flash-cards";
 import { FlashCardViewerPage } from "../pages/study-flash-cards/flash-card-viewer/flash-card-viewer";
 import { StudyOsceScenariosPage } from "../pages/study-osce-scenarios/study-osce-scenarios";
-import { DataServiceProvider } from '../providers/data-service/data-service';
 import { FlashCardComponent } from '../components/flash-card/flash-card';
 import { SafeHTMLPipe } from "../common/htmlSanitizer.pipe";
 import { LegalPage } from "../pages/legal/legal";
 import { OsceScenarioViewer } from "../pages/study-osce-scenarios/osce-scenario-viewer/osce-scenario-viewer";
+
+import { DataServiceProvider } from '../providers/data-service/data-service';
+import { TabsService } from "../providers/tabs.service";
 
 @NgModule({
   declarations: [
@@ -59,7 +61,8 @@ import { OsceScenarioViewer } from "../pages/study-osce-scenarios/osce-scenario-
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    DataServiceProvider
+    DataServiceProvider,
+    TabsService
   ]
 })
 export class AppModule { }

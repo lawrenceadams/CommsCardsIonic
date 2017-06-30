@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { Scenario } from "../osce.model";
 import { OSCE_SCENARIOS } from "../osce.store";
+import { TabsService } from "../../../providers/tabs.service";
 
 @Component({
     selector: 'page-osce-scenario-viewer',
@@ -10,12 +11,13 @@ import { OSCE_SCENARIOS } from "../osce.store";
 })
 export class OsceScenarioViewer {
 
+
     activeButton: number;
     scenarioId: number;
 
     public activeScenario: Scenario;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, public tabsService: TabsService) {
         this.activeButton = 0;
         this.scenarioId = this.navParams.get('data');
 
@@ -25,5 +27,14 @@ export class OsceScenarioViewer {
     onButtonClick(buttonid) {
         this.activeButton = buttonid;
     }
+
+    ionViewWillEnter() {
+        this.tabsService.hide();
+    }
+
+    ionViewWillLeave() {
+        this.tabsService.show();
+    }
+
 
 }
