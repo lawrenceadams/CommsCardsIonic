@@ -1,5 +1,4 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
-import { ToastController } from "ionic-angular";
 
 import { SafeHTMLPipe } from "../../common/htmlSanitizer.pipe";
 
@@ -14,9 +13,9 @@ export class FlashCardComponent {
 
   text: string;
   public isFlipped: boolean = false;
+  public isNotAnimating = false;
 
-  constructor(public toastCtrl: ToastController) {
-
+  constructor() {
   }
 
   toggleFlip() {
@@ -30,6 +29,14 @@ export class FlashCardComponent {
     } else if (e.direction === 4) {
       this.cardSwipeEvent.emit("previous");
     }
+
+    this.isNotAnimating = true;
+    setTimeout(() => {
+      this.isFlipped = false;
+    }, 200);
+    setTimeout(() => {
+      this.isNotAnimating = false;
+    }, 400);
   }
 
 }

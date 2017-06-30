@@ -7,6 +7,8 @@
 </ion-header>
 
 <ion-content padding>
-  <button ion-button block icon-end [navPush]="aboutPg">About <ion-icon name="information-circle"></ion-icon></button>
-  <button ion-button block icon-end [navPush]="usefulLinksPg">Useful Links <ion-icon name="link"></ion-icon></button>
+  <button ion-button block icon-end large [navPush]="aboutPg">About <ion-icon name="information-circle"></ion-icon></button>
+  <button ion-button block icon-end large [navPush]="usefulLinksPg">Useful Links <ion-icon name="link"></ion-icon></button>
+  <button ion-button block icon-end large [navPush]="legalPg">Legal <ion-icon name="briefcase"></ion-icon></button>
+  <button ion-button block icon-end large color="secondary" (click)="startStudying()">Start Studying <ion-icon name="book"></ion-icon></button>
 </ion-content>

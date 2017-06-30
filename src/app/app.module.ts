@@ -17,6 +17,7 @@ import { StudyOsceScenariosPage } from "../pages/study-osce-scenarios/study-osce
 import { DataServiceProvider } from '../providers/data-service/data-service';
 import { FlashCardComponent } from '../components/flash-card/flash-card';
 import { SafeHTMLPipe } from "../common/htmlSanitizer.pipe";
+import { LegalPage } from "../pages/legal/legal";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { SafeHTMLPipe } from "../common/htmlSanitizer.pipe";
     StudyOsceScenariosPage,
     FlashCardViewerPage,
     FlashCardComponent,
-    SafeHTMLPipe
+    SafeHTMLPipe,
+    LegalPage
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,8 @@ import { SafeHTMLPipe } from "../common/htmlSanitizer.pipe";
     StudyPage,
     StudyFlashCardsPage,
     StudyOsceScenariosPage,
-    FlashCardViewerPage
+    FlashCardViewerPage,
+    LegalPage
   ],
   providers: [
     StatusBar,
