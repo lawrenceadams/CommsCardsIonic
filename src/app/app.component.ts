@@ -5,8 +5,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from "../pages/tabs/tabs";
 
-declare var cordova;
-
 @Component({
   templateUrl: 'app.html'
 })

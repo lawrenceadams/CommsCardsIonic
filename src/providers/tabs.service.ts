@@ -19,7 +19,7 @@ export class TabsService {
             // fix for removing the margin if you got scorllable content
             setTimeout(() => {
                 Object.keys(scrollContent).map((key) => {
-                    scrollContent[key].style.marginBottom = '0';
+                    scrollContent[key].style.marginBottom = '60px';
                 });
                 Object.keys(footer).map((key) => {
                     footer[key].style.bottom = '0px';
