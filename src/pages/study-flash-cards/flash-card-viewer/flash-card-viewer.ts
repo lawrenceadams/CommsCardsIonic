@@ -46,7 +46,9 @@ export class FlashCardViewerPage {
     // this.updateCurrentCard();
 
     // Need to do this by hand in order to avoid the setTimeout causing an undefined error.
-    this.currentCard = this.currentCards[this.activeCardIndex]
+    this.currentCard = this.currentCards[this.activeCardIndex];
+
+    this.presentProfileModal();
   }
 
   onCardSwipeEvent(e) {
@@ -87,7 +89,6 @@ export class FlashCardViewerPage {
       position: 'top'
     });
     toast.present();
-    this.presentProfileModal();
   }
 
   private presentProfileModal() {
