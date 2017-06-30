@@ -19,7 +19,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
 
-      if (cordova.platformId == 'android') {
+      if (platform.is('android')) {
         statusBar.backgroundColorByHexString('#1c3cb0');
       }
 
