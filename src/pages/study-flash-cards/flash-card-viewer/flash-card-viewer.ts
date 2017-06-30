@@ -1,5 +1,5 @@
 import { Component, trigger, state, style, transition, animate } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, ModalController } from 'ionic-angular';
 
 import { DataServiceProvider } from "../../../providers/data-service/data-service";
 import { Card } from "../../../common/card.model";
@@ -37,7 +37,9 @@ export class FlashCardViewerPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public service: DataServiceProvider,
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    public modalCtrl: ModalController
+  ) {
     this.activeCardIndex = this.navParams.get('data');
     this.currentCards = this.service.getCards();
 
@@ -85,6 +87,12 @@ export class FlashCardViewerPage {
       position: 'top'
     });
     toast.present();
+    this.presentProfileModal();
+  }
+
+  private presentProfileModal() {
+    let profileModal = this.modalCtrl.create('InstructionModalPage');
+    profileModal.present();
   }
 
 }
