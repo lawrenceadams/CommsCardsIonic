@@ -1,0 +1,41 @@
+<ion-header>
+    <ion-navbar hide-tabs>
+        <ion-title>
+            <h3>{{ activeScenario.title }}</h3>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <div [innerHTML]="activeScenario.question" *ngIf="activeButton === 0"></div>
+    <div [innerHTML]="activeScenario.script" *ngIf="activeButton === 1"></div>
+    <div [innerHTML]="activeScenario.expectations" *ngIf="activeButton === 2"></div>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-buttons>
+            <div class="button-container">
+                <button ion-button icon-right [class.active]="activeButton === 0" (click)="onButtonClick(0)">
+                        <div>
+                            <ion-icon name="help"></ion-icon>
+                            <label>Question</label>
+                        </div>
+                </button>
+                <button ion-button icon-right [class.active]="activeButton === 1" (click)="onButtonClick(1)">
+                        <div>
+                            <ion-icon name="paper"></ion-icon>
+                            <label>Script</label>
+                        </div>
+                </button>
+                <button ion-button icon-right [class.active]="activeButton === 2" (click)="onButtonClick(2)">
+                        <div>
+                            <ion-icon name="checkmark-circle"></ion-icon>
+                            <label>Expected</label>
+                        </div>
+                </button>
+            </div>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-footer>

@@ -1,23 +1,31 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, App } from 'ionic-angular';
 
-/**
- * Generated class for the StudyOsceScenariosPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+import { Scenario } from "./osce.model";
+import { OSCE_SCENARIOS } from "./osce.store";
+import { OsceScenarioViewer } from "./osce-scenario-viewer/osce-scenario-viewer";
+
 @Component({
   selector: 'page-study-osce-scenarios',
   templateUrl: 'study-osce-scenarios.html',
 })
 export class StudyOsceScenariosPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  scenarios = {
+    "year1": null as Scenario[],
+    "year2": null as Scenario[],
+    "year3": null as Scenario[],
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad StudyOsceScenariosPage');
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public app: App) {
+    this.scenarios.year1 = OSCE_SCENARIOS.filter(scen => scen.year === 1);
+    this.scenarios.year2 = OSCE_SCENARIOS.filter(scen => scen.year === 2);
+    this.scenarios.year3 = OSCE_SCENARIOS.filter(scen => scen.year === 3);
+  }
+
+  onItemClick(itemIndex) {
+    this.app.getRootNav().push(OsceScenarioViewer, { data: itemIndex });
   }
 
 }

@@ -1,0 +1,26 @@
+page-osce-scenario-viewer {
+    label {
+        display: block;
+    }
+
+    .toolbar-ios {
+        min-height: 60px;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        button {
+            color: #747474;
+            flex: 1;
+        }
+
+        .active {
+            color:#4365e2;
+        }
+    }
+
+    
+}
