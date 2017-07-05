@@ -17,19 +17,19 @@
   <ion-list>
     <ion-item-group>
       <ion-item-divider>Year 1</ion-item-divider>
-      <button ion-item text-wrap *ngFor="let item of scenarios.year1; index as i" (click)="onItemClick(i)">
+      <button ion-item text-wrap *ngFor="let item of scenarios.year1" (click)="onItemClick(item.id)">
         {{ item.title }}
       </button>
     </ion-item-group>
     <ion-item-group>
       <ion-item-divider>Year 2</ion-item-divider>
-      <button ion-item text-wrap *ngFor="let item of scenarios.year2; index as i" (click)="onItemClick(i)">
+      <button ion-item text-wrap *ngFor="let item of scenarios.year2" (click)="onItemClick(item.id)">
         {{ item.title }}
       </button>
     </ion-item-group>
     <ion-item-group>
       <ion-item-divider>Year 3</ion-item-divider>
-      <button ion-item text-wrap *ngFor="let item of scenarios.year3; index as i" (click)="onItemClick(i)">
+      <button ion-item text-wrap *ngFor="let item of scenarios.year3" (click)="onItemClick(item.id)">
         {{ item.title }}
       </button>
     </ion-item-group>
