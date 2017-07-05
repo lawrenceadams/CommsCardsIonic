@@ -16,4 +16,8 @@ export class UsefulLinksPage {
     cordova.InAppBrowser.open(url, '_system', "location=true");
   }
 
+  youtubeLinks() {
+    this.navCtrl.push('YoutubeLinksPage');
+  }
+
 }
