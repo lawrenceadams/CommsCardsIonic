@@ -3,6 +3,7 @@ import { NavController, NavParams, ToastController, ModalController } from 'ioni
 
 import { DataServiceProvider } from "../../../providers/data-service/data-service";
 import { Card } from "../../../common/card.model";
+import { GoogleAnalytics } from "@ionic-native/google-analytics";
 
 @Component({
   selector: 'page-flash-card-viewer',
@@ -24,6 +25,7 @@ import { Card } from "../../../common/card.model";
 
   ]
 })
+
 export class FlashCardViewerPage {
 
   private activeCardIndex: number;
@@ -38,7 +40,8 @@ export class FlashCardViewerPage {
     public navParams: NavParams,
     public service: DataServiceProvider,
     public toastCtrl: ToastController,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    private ga: GoogleAnalytics
   ) {
     this.activeCardIndex = this.navParams.get('data');
     this.currentCards = this.service.getCards();
@@ -49,6 +52,8 @@ export class FlashCardViewerPage {
     this.currentCard = this.currentCards[this.activeCardIndex];
 
     this.presentProfileModal();
+
+    ga.trackEvent("FlashCard", "View", undefined, 1);
   }
 
   onCardSwipeEvent(e) {
