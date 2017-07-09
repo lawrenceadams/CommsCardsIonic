@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 
 import { DataServiceProvider } from "../../providers/data-service/data-service";
 import { FlashCardViewerPage } from "./flash-card-viewer/flash-card-viewer";
@@ -68,15 +68,25 @@ export class StudyFlashCardsPage {
   // Defines the avaliable suboptions (i.e. each avaliable year)
   sortBySuboptions: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private service: DataServiceProvider) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private service: DataServiceProvider,
+    private loadingCtrl: LoadingController
+  ) {
 
   }
+
+  loader;
 
   ionViewDidLoad() {
     // Set default sort option to year
     // Other options: system, type.
     this.selectedQuery = "year";
     this.sortCardsBy = "year";
+
+    // Loading screen for initial load
+    this.showLoader();
 
     this.service.setQuery(this.selectedQuery, ["1", "2", "3"]);
     this.foundCards = this.service.getCards();
@@ -105,14 +115,28 @@ export class StudyFlashCardsPage {
   }
 
   onSuboptionSelect(queryselector: string[]) {
+    this.showLoader();
     this.selectedSubquery = queryselector;
     this.service.setQuery(this.selectedQuery, this.selectedSubquery);
     this.foundCards = this.service.getCards();
+    this.hideLoader();
   }
 
   onItemClick(index) {
     console.log('[StudyFlashCards.html] Selected card index: ' + index);
     this.navCtrl.push(FlashCardViewerPage, { data: index });
+  }
+
+  showLoader() {
+    this.loader = this.loadingCtrl.create({
+      content: "Finding cards...",
+      dismissOnPageChange: true
+    });
+    this.loader.present();
+  }
+
+  hideLoader() {
+    this.loader.dismiss();
   }
 
 }
