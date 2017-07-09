@@ -3,12 +3,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { YoutubeVideoPlayer } from "@ionic-native/youtube-video-player";
 
-/**
- * Generated class for the YoutubeLinksPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+import { YOUTUBEVIDEOS } from "../../../common/youtube.store";
+import { YouTubeVideo } from "../../../common/youtube.model";
+import { AnalyticsServiceProvider } from "../../../providers/analytics-service/analytics-service";
+
+
 @IonicPage()
 @Component({
   selector: 'page-youtube-links',
@@ -16,11 +15,13 @@ import { YoutubeVideoPlayer } from "@ionic-native/youtube-video-player";
 })
 export class YoutubeLinksPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private youtube: YoutubeVideoPlayer) {
+  public videos: YouTubeVideo[] = YOUTUBEVIDEOS;
+
+  constructor(private analytics: AnalyticsServiceProvider, public navCtrl: NavController, public navParams: NavParams, private youtube: YoutubeVideoPlayer) {
   }
 
-  openLink() {
-    this.youtube.openVideo("rgxSFT-3KWw");
+  openLink(link) {
+    this.youtube.openVideo(link);
   }
 
 }

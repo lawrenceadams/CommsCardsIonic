@@ -13,8 +13,14 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
-  <button ion-button block large (click)="openLink()">Video 1</button>
+  <ion-list>
+    <button ion-item text-wrap *ngFor="let item of videos" (click)="openLink(item.link)">
+      {{ item.title }}
+    </button>
+  </ion-list>
+
+  <!--<button ion-button block large (click)="openLink()">Video 1</button>-->
 
 </ion-content>

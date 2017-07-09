@@ -37,4 +37,9 @@ export class AnalyticsServiceProvider {
     console.log("[AnalyticsServiceProvider] OSCEScenario View ID:" + scenarioID);
   }
 
+  YouTubeView(videoID) {
+    this.ga.trackEvent("YouTube", "View", videoID, 1);
+    console.log("[AnalyticsServiceProvider] YouTube View ID:" + videoID);
+  }
+
 }
