@@ -69,6 +69,7 @@ export class StudyFlashCardsPage {
   sortBySuboptions: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private service: DataServiceProvider) {
+
   }
 
   ionViewDidLoad() {
@@ -76,7 +77,10 @@ export class StudyFlashCardsPage {
     // Other options: system, type.
     this.selectedQuery = "year";
     this.sortCardsBy = "year";
-    console.log('ionViewDidLoad StudyFlashCardsPage');
+
+    this.service.setQuery(this.selectedQuery, ["1", "2", "3"]);
+    this.foundCards = this.service.getCards();
+
     this.updateSelectSuboptions(this.selectedQuery);
   }
 
@@ -89,7 +93,6 @@ export class StudyFlashCardsPage {
   updateSelectSuboptions(queryselector: string) {
     // Manipulate sortBySuboptions to give user options to choose what cards.
     // TODO Build a better way of selecting options...
-    console.log(queryselector);
     if (queryselector === "year") {
       this.sortBySuboptions = this.yearSubOptions;
     } else if (queryselector === "system") {
@@ -102,12 +105,9 @@ export class StudyFlashCardsPage {
   }
 
   onSuboptionSelect(queryselector: string[]) {
-    console.log(queryselector + " selected.");
     this.selectedSubquery = queryselector;
     this.service.setQuery(this.selectedQuery, this.selectedSubquery);
     this.foundCards = this.service.getCards();
-
-    console.log(this.foundCards);
   }
 
   onItemClick(index) {
