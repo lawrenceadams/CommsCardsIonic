@@ -28,6 +28,8 @@ import { Card } from "../../../common/card.model";
 })
 export class FlashCardViewerPage {
 
+  private hasShownModal = false;
+
   private activeCardIndex: number;
   private currentCards: Card[];
 
@@ -51,7 +53,11 @@ export class FlashCardViewerPage {
     // Need to do this by hand in order to avoid the setTimeout causing an undefined error.
     this.currentCard = this.currentCards[this.activeCardIndex];
     this.onCardUpdate();
-    this.presentProfileModal();
+
+    // Only present Profile Modal on first run
+    if (this.hasShownModal) {
+      this.presentProfileModal();
+    }
   }
 
   onCardSwipeEvent(e) {
@@ -99,6 +105,7 @@ export class FlashCardViewerPage {
   private presentProfileModal() {
     let profileModal = this.modalCtrl.create('InstructionModalPage');
     profileModal.present();
+    this.hasShownModal = true;
   }
 
   private onCardUpdate() {
