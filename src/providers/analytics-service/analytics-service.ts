@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
-// import 'rxjs/add/operator/map';
 
 import { GoogleAnalytics } from "@ionic-native/google-analytics";
+
+/**
+ * Anayltics service for tracking App Events
+ */
 
 @Injectable()
 export class AnalyticsServiceProvider {
@@ -14,7 +17,7 @@ export class AnalyticsServiceProvider {
   init() {
     // Initialize GA Service
     this.ga.debugMode()
-    this.ga.startTrackerWithId("UA-101513198-1");
+    this.ga.startTrackerWithId("UA-101513198-1"); // GA TRACKER ID
 
     this.ga.enableUncaughtExceptionReporting(true)
       .then((_success) => {
@@ -23,20 +26,31 @@ export class AnalyticsServiceProvider {
         console.log(_error)
       });
 
-    this.ga.trackEvent("Develop", "Dev", undefined, 0);
     console.log("[AnalyticsServiceProvider] Started.")
   }
 
+  /**
+   * Log FlashCard View Event
+   * @param cardID
+   */
   flashCardView(cardID) {
     this.ga.trackEvent("FlashCards", "View", cardID, 1);
     console.log("[AnalyticsServiceProvider] FlashCard View ID:" + cardID);
   }
 
+  /**
+   * Log OSCEScenario View Event
+   * @param scenarioID
+   */
   OSCEScenarioView(scenarioID) {
     this.ga.trackEvent("OSCEScenario", "View", scenarioID, 1);
     console.log("[AnalyticsServiceProvider] OSCEScenario View ID:" + scenarioID);
   }
 
+  /**
+   * Log YouTube Video View Event
+   * @param videoID 
+   */
   YouTubeView(videoID) {
     this.ga.trackEvent("YouTube", "View", videoID, 1);
     console.log("[AnalyticsServiceProvider] YouTube View ID:" + videoID);
