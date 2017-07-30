@@ -762,4 +762,5 @@ export const FLASHCARDS: Card[] = [
         ]
     }
 ]
-    ;
+
+    ; // DO NOT INCLUDE THIS LINE WHEN COPYING DATABASE!!!
