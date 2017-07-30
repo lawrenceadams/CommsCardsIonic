@@ -1,4 +1,10 @@
 page-osce-scenario-viewer {
+
+    // This means the first paragraph of the OSCE Viewer does not have excess padding ontop
+    div > p:first-child {
+        margin-top: 0px;
+    }
+
     label {
         display: block;
     }
@@ -23,7 +29,7 @@ page-osce-scenario-viewer {
 
         .bar-button-ios {
             height: 45px;
-	}        
+	    }        
 
     }
 
