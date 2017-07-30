@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ash.commscards" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.dundeeacuk.medicine.commscards" version="0.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>CommsCards</name>
-    <description>An awesome Ionic/Cordova app.</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+    <description>An app to enhance Communication Skills learning</description>
+    <author email="l.a.t.adams@dundee.ac.uk." href="https://mbchb.dundee.ac.uk/">Communication Skills Team</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
-    <allow-navigation href="http://192.168.1.149:8101" />
+    <!-- <allow-navigation href="http://192.168.1.149:8101" />
     <allow-navigation href="http://192.168.1.149:8100" />
-    <allow-navigation href="http://192.168.1.135:8100" />
+    <allow-navigation href="http://192.168.1.135:8100" /> -->
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
