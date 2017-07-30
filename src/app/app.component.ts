@@ -21,6 +21,10 @@ export class MyApp {
         statusBar.backgroundColorByHexString('#1c3cb0');
       }
 
+      if (platform.is('ios')) {
+        statusBar.hide();
+      }
+
       splashScreen.hide();
 
     });
