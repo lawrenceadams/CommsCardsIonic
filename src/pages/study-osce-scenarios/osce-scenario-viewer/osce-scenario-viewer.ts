@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-import { Scenario } from "../osce.model";
-import { OSCE_SCENARIOS } from "../osce.store";
+import { Scenario } from "../../../common/osce.model";
+import { OSCE_SCENARIOS } from "../../../common/osce.store";
 import { TabsService } from "../../../providers/tabs.service";
 import { AnalyticsServiceProvider } from "../../../providers/analytics-service/analytics-service";
 
