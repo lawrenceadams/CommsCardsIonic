@@ -44,7 +44,13 @@ import { AnalyticsServiceProvider } from '../providers/analytics-service/analyti
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      platforms: {
+        ios: {
+          statusbarPadding: true
+        }
+      }
+    }),
     BrowserAnimationsModule
   ],
   bootstrap: [IonicApp],
