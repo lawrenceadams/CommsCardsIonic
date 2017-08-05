@@ -20,8 +20,12 @@ export class YoutubeLinksPage {
   constructor(private analytics: AnalyticsServiceProvider, public navCtrl: NavController, public navParams: NavParams, private youtube: YoutubeVideoPlayer) {
   }
 
-  openLink(link) {
-    this.youtube.openVideo(link);
+  openLink(item) {
+    this.youtube.openVideo(item.link);
+    // TODO Loading Screen
+
+    this.analytics.YouTubeView(item.id);
+    // TODO Analytics DONE TESTING NEEDED.
   }
 
 }
