@@ -2,6 +2,8 @@ import { Component, trigger, state, style, transition, animate } from '@angular/
 import { NavController, NavParams, ToastController, ModalController } from 'ionic-angular';
 
 import { DataServiceProvider } from "../../../providers/data-service/data-service";
+import { AnalyticsServiceProvider } from "../../../providers/analytics-service/analytics-service";
+
 import { Card } from "../../../common/card.model";
 
 @Component({
@@ -26,6 +28,8 @@ import { Card } from "../../../common/card.model";
 })
 export class FlashCardViewerPage {
 
+  private hasShownModal = false;
+
   private activeCardIndex: number;
   private currentCards: Card[];
 
@@ -38,7 +42,8 @@ export class FlashCardViewerPage {
     public navParams: NavParams,
     public service: DataServiceProvider,
     public toastCtrl: ToastController,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    private analytics: AnalyticsServiceProvider
   ) {
     this.activeCardIndex = this.navParams.get('data');
     this.currentCards = this.service.getCards();
@@ -47,8 +52,12 @@ export class FlashCardViewerPage {
 
     // Need to do this by hand in order to avoid the setTimeout causing an undefined error.
     this.currentCard = this.currentCards[this.activeCardIndex];
+    this.onCardUpdate();
 
-    this.presentProfileModal();
+    // Only present Profile Modal on first run
+    if (this.hasShownModal) {
+      this.presentProfileModal();
+    }
   }
 
   onCardSwipeEvent(e) {
@@ -80,6 +89,8 @@ export class FlashCardViewerPage {
       this.currentCard = this.currentCards[this.activeCardIndex]
       this.flyInOutState = "in";
     }, 200);
+
+    this.onCardUpdate();
   }
 
   private notifyUser(msg) {
@@ -94,6 +105,11 @@ export class FlashCardViewerPage {
   private presentProfileModal() {
     let profileModal = this.modalCtrl.create('InstructionModalPage');
     profileModal.present();
+    this.hasShownModal = true;
+  }
+
+  private onCardUpdate() {
+    this.analytics.flashCardView(this.activeCardIndex);
   }
 
 }

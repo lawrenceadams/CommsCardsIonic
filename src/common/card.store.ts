@@ -1,5 +1,13 @@
 import { Card } from "./card.model";
 
+/**
+ * ====== WARNING =======
+ * This is the Flash Card Database File
+ * Please Validate Database before publishing app.
+ * 
+ * ENSURE EACH ID IS UNIQUE OR TRACKING WILL NOT WORK!!!
+ */
+
 export const FLASHCARDS: Card[] = [
     {
         "id": 1,
@@ -753,4 +761,6 @@ export const FLASHCARDS: Card[] = [
             73
         ]
     }
-];
+]
+
+    ; // DO NOT INCLUDE THIS LINE WHEN COPYING DATABASE!!!

@@ -1,10 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { YoutubeVideoPlayer } from "@ionic-native/youtube-video-player";
 import { StatusBar } from '@ionic-native/status-bar';
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { GoogleAnalytics } from "@ionic-native/google-analytics";
 
 import { MyApp } from './app.component';
 import { TabsPage } from "../pages/tabs/tabs";
@@ -22,6 +24,7 @@ import { OsceScenarioViewer } from "../pages/study-osce-scenarios/osce-scenario-
 
 import { DataServiceProvider } from '../providers/data-service/data-service';
 import { TabsService } from "../providers/tabs.service";
+import { AnalyticsServiceProvider } from '../providers/analytics-service/analytics-service';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,13 @@ import { TabsService } from "../providers/tabs.service";
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      platforms: {
+        ios: {
+          statusbarPadding: true
+        }
+      }
+    }),
     BrowserAnimationsModule
   ],
   bootstrap: [IonicApp],
@@ -64,7 +73,9 @@ import { TabsService } from "../providers/tabs.service";
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     DataServiceProvider,
     TabsService,
-    YoutubeVideoPlayer
+    YoutubeVideoPlayer,
+    GoogleAnalytics,
+    AnalyticsServiceProvider
   ]
 })
 export class AppModule { }
