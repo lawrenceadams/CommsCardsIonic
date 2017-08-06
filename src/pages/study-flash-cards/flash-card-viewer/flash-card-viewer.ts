@@ -55,7 +55,7 @@ export class FlashCardViewerPage {
     this.onCardUpdate();
 
     // Only present Profile Modal on first run
-    if (this.hasShownModal) {
+    if (!this.hasShownModal) {
       this.presentProfileModal();
     }
   }
