@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl } from "@angular/forms";
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import 'rxjs/add/operator/debounceTime';
 
 import { YoutubeVideoPlayer } from "@ionic-native/youtube-video-player";
@@ -24,7 +24,13 @@ export class YoutubeLinksPage {
 
   public videos: YouTubeVideo[] = YOUTUBEVIDEOS;
 
-  constructor(private analytics: AnalyticsServiceProvider, public navCtrl: NavController, public navParams: NavParams, private youtube: YoutubeVideoPlayer) {
+  constructor(
+    private analytics: AnalyticsServiceProvider,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private youtube: YoutubeVideoPlayer,
+    private loadingCtrl: LoadingController
+  ) {
     this.searchControl = new FormControl();
   }
 
@@ -50,10 +56,18 @@ export class YoutubeLinksPage {
 
   openLink(item) {
     this.youtube.openVideo(item.link);
-    // TODO Loading Screen
 
+    this.showLoader();
     this.analytics.YouTubeView(item.id);
     // TODO Analytics DONE TESTING NEEDED.
+  }
+
+  showLoader() {
+    let loader = this.loadingCtrl.create({
+      content: "Loading Video...",
+      duration: 4000
+    });
+    loader.present();
   }
 
   /**
