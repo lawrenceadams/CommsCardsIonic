@@ -1,6 +1,6 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 
-import { SafeHTMLPipe } from "../../common/htmlSanitizer.pipe";
+// import { SafeHTMLPipe } from "../../common/htmlSanitizer.pipe";
 
 @Component({
   selector: 'flash-card',
