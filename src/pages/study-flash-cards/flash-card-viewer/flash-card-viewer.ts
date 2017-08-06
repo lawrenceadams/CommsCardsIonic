@@ -28,8 +28,6 @@ import { Card } from "../../../common/card.model";
 })
 export class FlashCardViewerPage {
 
-  private hasShownModal = false;
-
   private activeCardIndex: number;
   private currentCards: Card[];
 
@@ -48,15 +46,15 @@ export class FlashCardViewerPage {
     this.activeCardIndex = this.navParams.get('data');
     this.currentCards = this.service.getCards();
 
-    // this.updateCurrentCard();
-
     // Need to do this by hand in order to avoid the setTimeout causing an undefined error.
     this.currentCard = this.currentCards[this.activeCardIndex];
     this.onCardUpdate();
 
     // Only present Profile Modal on first run
-    if (!this.hasShownModal) {
+    // The Data Service is used as the state has to be stored as a global var.
+    if (!this.service.getInfoModalYetSeenStatus()) {
       this.presentProfileModal();
+      this.service.setInfoModalSeen();
     }
   }
 
@@ -105,7 +103,6 @@ export class FlashCardViewerPage {
   private presentProfileModal() {
     let profileModal = this.modalCtrl.create('InstructionModalPage');
     profileModal.present();
-    this.hasShownModal = true;
   }
 
   private onCardUpdate() {

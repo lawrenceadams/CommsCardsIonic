@@ -6,14 +6,29 @@ import { FLASHCARDS } from "../../common/card.store";
 
 @Injectable()
 export class DataServiceProvider {
+
   constructor() {
   }
+
+  /**
+   *  Setup a variable for persistance across a session to check if info
+   *  modal has been shown or not.
+   */
+  infoModalSeen: boolean = false;
 
   cards: Card[] = [];
   query: string;
   subquery: string[];
 
-  setQuery(searchQuery, searchSubquery) {
+  public getInfoModalYetSeenStatus() {
+    return this.infoModalSeen;
+  }
+
+  public setInfoModalSeen() {
+    this.infoModalSeen = true; // Run once complete!
+  }
+
+  public setQuery(searchQuery, searchSubquery) {
     this.query = searchQuery;
     this.subquery = searchSubquery;
 
