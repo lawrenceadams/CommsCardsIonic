@@ -17,10 +17,10 @@ import { AnalyticsServiceProvider } from "../../../providers/analytics-service/a
 })
 export class YoutubeLinksPage {
 
-  searchTerm: string = '';
-  searchControl: FormControl;
-  items: any;
-  searching: any = false;
+  searchTerm: string = ''; // <-- Search bar sets this
+  searchControl: FormControl; // Used for debounce time
+  items: any; // Returned from search query, outputted in youtube-links.html
+  searching: any = false; // Used to enable/disable the spinner
 
   public videos: YouTubeVideo[] = YOUTUBEVIDEOS;
 
@@ -29,20 +29,23 @@ export class YoutubeLinksPage {
   }
 
   ionViewDidLoad() {
-    this.setFilteredItems();
+    this.setFilteredItems(); // On load page get all items
 
-    this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
-      this.searching = false;
-      this.setFilteredItems();
+    /**
+     * Setup an event listener via RxJs to wait 500ms before searching
+     */
+    this.searchControl.valueChanges.debounceTime(500).subscribe(search => {
+      this.searching = false; // Disable spinner
+      this.setFilteredItems(); // Search
     });
   }
 
   setFilteredItems() {
-    this.items = this.filterItems(this.searchTerm);
+    this.items = this.filterItems(this.searchTerm); // Set items object from search query
   }
 
   onSearchInput() {
-    this.searching = true;
+    this.searching = true; // Enable spinner
   }
 
   openLink(item) {
@@ -53,11 +56,14 @@ export class YoutubeLinksPage {
     // TODO Analytics DONE TESTING NEEDED.
   }
 
-
-  // FILTER FUNCTION
-  private filterItems(searchTerm) {
-    return this.videos.filter((video) => {
-      return video.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+  /**
+   * Private function that returns found videos
+   * @param searchTerm 
+   * @returns Array of YouTubeVideo Objects
+   */
+  private filterItems(searchTerm): YouTubeVideo[] {
+    return this.videos.filter((video) => { // Returns true items only
+      return video.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1; // Sets true to items which are found
     });
   }
 
