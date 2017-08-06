@@ -20,8 +20,8 @@ import { Card } from "../../../common/card.model";
       state('left', style({
         transform: 'translate3d(150%, 0, 0)'
       })),
-      transition('in => *', animate('200ms ease-in')),
-      transition('* => in', animate('200ms ease-out'))
+      transition('in => *', animate('200ms cubic-bezier(0.215, 0.61, 0.355, 1)')), // Ease-Out-Cubic used - more natural feel.
+      transition('* => in', animate('200ms cubic-bezier(0.215, 0.61, 0.355, 1)')) // http://easings.net/#easeOutCubic
     ]),
 
   ]
