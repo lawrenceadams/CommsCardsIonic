@@ -11,7 +11,6 @@ export class FlashCardComponent {
   @Input() activeCard;
   @Output() cardSwipeEvent: EventEmitter<String> = new EventEmitter();
 
-  text: string;
   public isFlipped: boolean = false;
   public isNotAnimating = false;
 
