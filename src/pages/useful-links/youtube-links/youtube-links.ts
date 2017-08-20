@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FormControl } from "@angular/forms";
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import 'rxjs/add/operator/debounceTime';
 
 import { YoutubeVideoPlayer } from "@ionic-native/youtube-video-player";
 
@@ -15,17 +17,68 @@ import { AnalyticsServiceProvider } from "../../../providers/analytics-service/a
 })
 export class YoutubeLinksPage {
 
+  searchTerm: string = ''; // <-- Search bar sets this
+  searchControl: FormControl; // Used for debounce time
+  items: any; // Returned from search query, outputted in youtube-links.html
+  searching: any = false; // Used to enable/disable the spinner
+
   public videos: YouTubeVideo[] = YOUTUBEVIDEOS;
 
-  constructor(private analytics: AnalyticsServiceProvider, public navCtrl: NavController, public navParams: NavParams, private youtube: YoutubeVideoPlayer) {
+  constructor(
+    private analytics: AnalyticsServiceProvider,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private youtube: YoutubeVideoPlayer,
+    private loadingCtrl: LoadingController
+  ) {
+    this.searchControl = new FormControl();
+  }
+
+  ionViewDidLoad() {
+    this.setFilteredItems(); // On load page get all items
+
+    /**
+     * Setup an event listener via RxJs to wait 500ms before searching
+     */
+    this.searchControl.valueChanges.debounceTime(500).subscribe(search => {
+      this.searching = false; // Disable spinner
+      this.setFilteredItems(); // Search
+    });
+  }
+
+  setFilteredItems() {
+    this.items = this.filterItems(this.searchTerm); // Set items object from search query
+  }
+
+  onSearchInput() {
+    this.searching = true; // Enable spinner
   }
 
   openLink(item) {
     this.youtube.openVideo(item.link);
-    // TODO Loading Screen
 
+    this.showLoader();
     this.analytics.YouTubeView(item.id);
     // TODO Analytics DONE TESTING NEEDED.
+  }
+
+  showLoader() {
+    let loader = this.loadingCtrl.create({
+      content: "Loading Video...",
+      duration: 4000
+    });
+    loader.present();
+  }
+
+  /**
+   * Private function that returns found videos
+   * @param searchTerm 
+   * @returns Array of YouTubeVideo Objects
+   */
+  private filterItems(searchTerm): YouTubeVideo[] {
+    return this.videos.filter((video) => { // Returns true items only
+      return video.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1; // Sets true to items which are found
+    });
   }
 
 }

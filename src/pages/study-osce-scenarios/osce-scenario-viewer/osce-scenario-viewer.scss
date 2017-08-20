@@ -5,6 +5,11 @@ page-osce-scenario-viewer {
         margin-top: 0px;
     }
 
+    // Add a bit of padding at the bottom of each li so that text is a bit easier to read!
+    .scroll-content ul > li {
+        padding-bottom: 0.25em; 
+    }
+
     label {
         display: block;
     }

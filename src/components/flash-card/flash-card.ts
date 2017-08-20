@@ -1,6 +1,6 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 
-import { SafeHTMLPipe } from "../../common/htmlSanitizer.pipe";
+// import { SafeHTMLPipe } from "../../common/htmlSanitizer.pipe";
 
 @Component({
   selector: 'flash-card',
@@ -11,7 +11,6 @@ export class FlashCardComponent {
   @Input() activeCard;
   @Output() cardSwipeEvent: EventEmitter<String> = new EventEmitter();
 
-  text: string;
   public isFlipped: boolean = false;
   public isNotAnimating = false;
 

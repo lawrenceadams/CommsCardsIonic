@@ -1,158 +1,130 @@
 flash-card {
     :host {
-    display: block;
-        // This is not needed on ionic.
-        // html {
-        //   height: 100%;
-        //   overflow: hidden;
-        // }
+        display: block;
     }
-
 
     body {
-    height: 100%;
-    overflow: hidden;
+        height: 100%;
+        overflow: hidden;
     }
-
 
     .back {
         li {
-        padding-right: 1em;
+            padding-right: 1em;
         }
     }
-    //     ol {
-    //     list-style-type: decimal;
-    //     margin-left: 1.2em;
-    //     li {
-    //         list-style-type: decimal;
-    //         list-style-position: inside;
-    //     }
-    //     }
-    // }
+
     .danger-text li b {
         color: #ff6264;
         font-weight: 600;
     }
-    // ul {
-    //     list-style: none;
-    //     margin-left: 0;
-    //     padding-left: 1.2em;
-    //     padding-top: 1.2em;
-    //     text-indent: -1.2em;
-    //     > li:before {
-    //     content: "●";
-    //     display: block;
-    //     float: left;
-    //     width: 1.2em;
-    //     /*color: ;*/
-    //     }
+
     .front li {
         text-align: left !important;
     }
-    // .back ol {
-    //     padding-top: 15px;
-    //     /*padding-bottom: 15px;*/
-    // }
-    // }
 
     ul li {
         padding-bottom: 5px;
     }
 
-    /* TESTING*/
-
-    /* END TESTING*/
-
     .back ul {
-    padding-top: 15px;
-    /*padding-bottom: 15px;*/
+        padding-top: 15px;
+        /*padding-bottom: 15px;*/
     }
 
     .flip-container {
-    perspective: 1000px;
-    opacity: 1;
-    transition: opacity .25s ease-in-out;
-    -moz-transition: opacity .25s ease-in-out;
-    -webkit-transition: opacity .25s ease-in-out;
+        perspective: 1000px;
+        opacity: 1;
+        transition: opacity .25s ease-in-out;
+        -moz-transition: opacity .25s ease-in-out;
+        -webkit-transition: opacity .25s ease-in-out;
     }
 
     .card-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
     }
 
     .fadeOut {
-    opacity: 0;
-    transition: opacity .0s ease-in-out;
+        opacity: 0;
+        transition: opacity .0s ease-in-out;
     }
 
-    /* flip the pane when hovered */
+    /* flip the pane when clicked */
 
     .flip-container {
-    &.flip .flipper {
-        transform: rotateY(180deg);
-    }
-    width: 70vw;
-    height: 70vh;
+        &.flip .flipper {
+            transform: rotateY(180deg);
+        }
+
+        width: 70vw;
+        height: 70vh;
     }
 
     .front, .back {
-    width: 70vw;
-    height: 70vh;
+        width: 70vw;
+        height: 70vh;
     }
 
     /* flip speed goes here */
 
     .flipper {
-    transition: 0.6s;
-    transform-style: preserve-3d;
-    position: relative;
-    &.noanimate {
-        transition: 0s !important;
-    }
+        transition: 0.6s;
+        transform-style: preserve-3d;
+        position: relative;
+
+        &.noanimate {
+            transition: 0s !important;
+        }
     }
 
     /* hide back of pane during swap */
 
     .front, .back {
-    z-index: 2;
-    backface-visibility: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 10px;
-    box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1);
-    transition: 0.3s background-color;
-    border: 1px solid #dee2e3;
-    overflow-y: auto;
-    /* Pretty scrolling on iOS */
-    -webkit-overflow-scrolling: touch;
+        z-index: 2;
+        backface-visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 10px;
+        box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1);
+        transition: 0.3s background-color;
+        border: 1px solid #dee2e3;
+        overflow-y: auto;
+
+        /* Pretty scrolling on iOS */
+        -webkit-overflow-scrolling: touch;
     }
 
     /* front pane, placed above back */
 
     .front {
-    z-index: 3;
-    /* for firefox 31 */
-    transform: rotateY(0deg);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-weight: bold;
+        z-index: 3;
+        /* for firefox 31 */
+        transform: rotateY(0deg);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-weight: bold;
     }
 
     /* back, initially hidden pane */
 
     .back {
-    transform: rotateY(180deg);
+        transform: rotateY(180deg);
     }
 
+    /*
+        Default is >> padding: 1em 1em 0px 1em;
+                   >> (top, right, bottom, left)
+        Turned off padding as by default ionic has a nice margin.
+    */
     p {
-        padding: 1em 1em 0px 1em;
+        padding: 0em 1em 0px 1em;
     }
 
     @media (max-width: 800px) {
