@@ -360,7 +360,7 @@ export const FLASHCARDS: Card[] = [
         "CCP": [
             92
         ],
-        "front": "<p>A 73y/o man needs catheterised to relieve acute urinary retention Explain the procedure to the gentleman</p>",
+        "front": "<p>A 73y/o man needs catheterised to relieve acute urinary retention</p><p>Explain the procedure to Explain the procedure to the gentleman</p>",
         "back": "<p>Because your bladder isn’t emptying properly, what we would like to do is insert a small plastic tube called a catheter to allow the urine to drain away, which should hopefully relieve the pain you have in your tummy.</p><p>This will involve cleaning and then applying some numbing jelly to your penis and then gently inserting the plastic tube into your bladder via your penis. This may be a little uncomfortable for you but shouldn’t be too painful as the jelly should ease the pain. We would expect that as soon as the catheter is in, your bladder will begin to empty and so the relief should be almost immediate. Someone else will be in the room when the catheter is inserted to assist with the procedure and also to ensure your comfort, is that alright?</p><p>The procedure is usually straightforward but occasionally a catheter can be tricky to insert – if this was the case we would get a specialist to help. The main risk of the procedure is causing a urine infection. There is also a small risk of causing some bleeding or damage when inserting the catheter. The catheter may need to stay in for a number of days before we take it out.</p>",
         "id": 24,
         "system": [

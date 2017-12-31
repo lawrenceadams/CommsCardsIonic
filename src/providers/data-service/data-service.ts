@@ -40,6 +40,8 @@ export class DataServiceProvider {
     this.cards = [];
     console.log("Searching " + this.query + " for " + this.subquery);
 
+    let foundCards: Card[] = [];
+
     // Match search query.
     if (this.query === "type") {
       FLASHCARDS.filter(searchCard => {
@@ -50,7 +52,7 @@ export class DataServiceProvider {
             // If the card includes the forEach subquery
             if (searchCard.type.includes(element)) {
               // Push to service cards.
-              this.cards.push(searchCard);
+              foundCards.push(searchCard);
             }
           });
         }
@@ -61,7 +63,7 @@ export class DataServiceProvider {
           this.subquery.forEach(element => {
             searchCard.system.forEach(sys => {
               if (sys === element) {
-                this.cards.push(searchCard);
+                foundCards.push(searchCard);
               }
             })
           })
@@ -74,7 +76,7 @@ export class DataServiceProvider {
             // Same as above but includes year
             if (searchCard.year === Number(element)) {
               // Push to service cards.
-              this.cards.push(searchCard);
+              foundCards.push(searchCard);
             }
           });
         }
@@ -82,6 +84,9 @@ export class DataServiceProvider {
     } else {
       console.error("Route was likely set to an unknown search type")
     }
+
+    // Remove Duplicates!
+    this.cards = Array.from(new Set(foundCards));
   }
 
   /**
