@@ -12,9 +12,26 @@
 
 </ion-header>
 
+<!-- <ion-content padding>
+  <button ion-button block icon-end large (click)="openExternalURL('https://mbchb.dundee.ac.uk')">MedBlogs Home
+    <ion-icon name="home"></ion-icon>
+  </button>
+  <button ion-button block icon-end large (click)="openExternalURL('https://mbchb.dundee.ac.uk/commskills/')">Dundee Chat
+    <ion-icon name="chatbubbles"></ion-icon>
+  </button>
+  <button ion-button block icon-end large color="youtube" (click)="youtubeLinks()">Clinical Skills Videos
+    <ion-icon name="logo-youtube"></ion-icon>
+  </button>
+</ion-content> -->
+
+
 
 <ion-content padding>
-  <button ion-button block icon-end large (click)="openExternalURL('https://mbchb.dundee.ac.uk')">Medblogs Home<ion-icon name="home"></ion-icon></button>
-  <button ion-button block icon-end large (click)="openExternalURL('https://mbchb.dundee.ac.uk/commskills/')">Dundee Chat<ion-icon name="chatbubbles"></ion-icon></button>
-  <button ion-button block icon-end large color="youtube" (click)="youtubeLinks()">Clinical Skills Videos<ion-icon name="logo-youtube"></ion-icon></button>
+  <button ion-button block icon-end large [color]="link.color" *ngFor="let link of links" (click)="openExternalURL(link.address)">
+    {{ link.title }}
+    <ion-icon [name]="link.icon"></ion-icon>
+  </button>
+  <button ion-button block icon-end large color="youtube" (click)="youtubeLinks()">Clinical Skills Videos
+    <ion-icon name="logo-youtube"></ion-icon>
+  </button>
 </ion-content>
