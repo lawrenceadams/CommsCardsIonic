@@ -4,7 +4,7 @@ import { UsefulLink } from "./usefulLink.model";
  * Links will appear in the order as below.
  * For a list of avaliable icons, see here: https://ionicframework.com/docs/ionicons/
  * For a list of avaliable colours, see here: https://ionicframework.com/docs/theming/theming-your-app/
- * Or, for custom colours, use an RGB hash https://www.w3schools.com/colors/colors_picker.asp
+ * Recommed leaving as primary
  */
 export const USEFULLINKS: UsefulLink[] =
     [
