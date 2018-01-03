@@ -11,8 +11,21 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class UpdateServiceProvider {
 
+  manifestData;
+
+  private MANIFEST_URL = "http://commscard.abbeyhc.co.uk/manifest.json";
+
   constructor(public http: Http) {
     console.log('Hello UpdateServiceProvider Provider');
+  }
+
+  fetchManifest() {
+    // this.http.get("http://commscard.abbeyhc.co.uk/manifest.json").map(res => res.json()).subscribe(data => {
+    this.http.get("/data/manifest.json").map(res => res.json()).subscribe(data => {
+      console.log(data);
+      this.manifestData = data;
+    });
+    // console.log(this.manifestData);
   }
 
 }
