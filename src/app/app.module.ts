@@ -8,6 +8,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { YoutubeVideoPlayer } from "@ionic-native/youtube-video-player";
 import { StatusBar } from '@ionic-native/status-bar';
 import { GoogleAnalytics } from "@ionic-native/google-analytics";
+import { NativeStorage } from "@ionic-native/native-storage";
 
 import { MyApp } from './app.component';
 import { TabsPage } from "../pages/tabs/tabs";
@@ -55,7 +56,6 @@ import { UpdateServiceProvider } from '../providers/update-service/update-servic
       }
     }),
     BrowserAnimationsModule,
-    Http,
     HttpModule
   ],
   bootstrap: [IonicApp],
@@ -82,7 +82,8 @@ import { UpdateServiceProvider } from '../providers/update-service/update-servic
     GoogleAnalytics,
     AnalyticsServiceProvider,
     DatabaseServiceProvider,
-    UpdateServiceProvider
+    UpdateServiceProvider,
+    NativeStorage
   ]
 })
 export class AppModule { }
