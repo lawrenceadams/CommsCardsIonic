@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { Http, HttpModule } from "@angular/http";
 
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { YoutubeVideoPlayer } from "@ionic-native/youtube-video-player";
@@ -25,6 +26,8 @@ import { OsceScenarioViewer } from "../pages/study-osce-scenarios/osce-scenario-
 import { DataServiceProvider } from '../providers/data-service/data-service';
 import { TabsService } from "../providers/tabs.service";
 import { AnalyticsServiceProvider } from '../providers/analytics-service/analytics-service';
+import { DatabaseServiceProvider } from '../providers/database-service/database-service';
+import { UpdateServiceProvider } from '../providers/update-service/update-service';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,9 @@ import { AnalyticsServiceProvider } from '../providers/analytics-service/analyti
         }
       }
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    Http,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -75,7 +80,9 @@ import { AnalyticsServiceProvider } from '../providers/analytics-service/analyti
     TabsService,
     YoutubeVideoPlayer,
     GoogleAnalytics,
-    AnalyticsServiceProvider
+    AnalyticsServiceProvider,
+    DatabaseServiceProvider,
+    UpdateServiceProvider
   ]
 })
 export class AppModule { }
