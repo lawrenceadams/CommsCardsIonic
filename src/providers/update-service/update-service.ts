@@ -22,8 +22,8 @@ export class UpdateServiceProvider {
   }
 
   /**
-   * Returns observable with interface IVersionData.
-   * @returns Observable
+   * Returns Promise with interface IVersionData.
+   * @returns Promise
    * TODO Replace proxy with http://commscard.abbeyhc.co.uk/manifest.json
    */
   public getManifest(): Promise<IVersionData> {
