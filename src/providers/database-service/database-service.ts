@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { NativeStorage } from "@ionic-native/native-storage";
 import 'rxjs/add/operator/map';
 
+import { VersionDataModel, IVersionData } from "../models/version.model";
+import { Observable } from 'rxjs/Observable';
 /*
   Generated class for the DatabaseServiceProvider provider.
 
@@ -11,40 +13,25 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class DatabaseServiceProvider {
 
-  private DB_INIT_SEED = {
-    "cards": {
-      "version": 0
-    },
-    "osce_scenarios": {
-      "version": 0
-    },
-    "useful_links": {
-      "version": 0
-    },
-    "videos": {
-      "version": 0
-    }
+  public DATABASE_INIT_SEED: VersionDataModel = {
+    cards: 0,
+    osce_scenarios: 0,
+    useful_links: 0,
+    videos: 0
   }
 
   constructor(private nativeStorage: NativeStorage) {
   }
 
-  public getLocalDataVersion() {
-    this.nativeStorage.getItem("versions")
-      .then(
-      data => { console.log(data) },
-      error => {
-        if (error.code === 2) {
-          console.log("NativeStorage: ITEM_NOT_FOUND");
-          this.seedLocalDataVersion();
-        }
-      }
-      );
+  /**
+   * Gets the version of the local databases from native local storage.
+   */
+  public getLocalDBVersion(): Promise<IVersionData> {
+    return this.nativeStorage.getItem("versions");
   }
 
-  private seedLocalDataVersion() {
-    console.log("Seeding Database with v0 for all items");
-    this.nativeStorage.setItem("versions", this.DB_INIT_SEED);
+  public initLocalDB() {
+    return this.nativeStorage.setItem("versions", this.DATABASE_INIT_SEED);
   }
 
 }

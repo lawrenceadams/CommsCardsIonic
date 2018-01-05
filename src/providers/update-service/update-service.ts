@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
+
+import { DatabaseServiceProvider } from "../database-service/database-service";
+import { VersionDataModel, IVersionData } from "../models/version.model";
+import { Observable } from 'rxjs/Observable';
 
 /*
   Generated class for the UpdateServiceProvider provider.
@@ -11,19 +16,18 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class UpdateServiceProvider {
 
-  manifestData;
-
   private MANIFEST_URL = "http://commscard.abbeyhc.co.uk/manifest.json";
 
-  constructor(public http: Http) {
+  constructor(public http: Http, private dbService: DatabaseServiceProvider) {
   }
 
-  fetchManifest() {
-    // this.http.get("http://commscard.abbeyhc.co.uk/manifest.json").map(res => res.json()).subscribe(data => {
-    this.http.get("/data/manifest.json").map(res => res.json()).subscribe(data => {
-      this.manifestData = data;
-    });
+  /**
+   * Returns observable with interface IVersionData.
+   * @returns Observable
+   * TODO Replace proxy with http://commscard.abbeyhc.co.uk/manifest.json
+   */
+  public getManifest(): Promise<IVersionData> {
+    return this.http.get("/data/manifest.json").map(res => res.json()).toPromise();
   }
-
 
 }
