@@ -7,3 +7,9 @@ export class YouTubeVideo {
     title: string;
     link: string;
 }
+
+export interface IYouTubeVideo {
+    id: number;
+    title: string;
+    link: string;
+}

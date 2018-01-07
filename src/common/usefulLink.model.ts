@@ -9,3 +9,11 @@ export class UsefulLink {
     color: string;
     icon: string;
 }
+
+export interface IUsefulLink {
+    // id: number; - not needed!
+    title: string;
+    address: string;
+    color: string;
+    icon: string;
+}

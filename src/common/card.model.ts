@@ -12,3 +12,14 @@ export class Card {
     system: string[];
     CCP: number[];
 }
+
+export interface ICard {
+    id: number;
+    front: string;
+    back: string;
+    title: string;
+    year: number;
+    type: string;
+    system: string[];
+    CCP: number[];
+}

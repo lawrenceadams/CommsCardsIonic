@@ -11,3 +11,13 @@ export class Scenario {
     script: string;
     expectations: string;
 }
+
+export interface IScenario {
+    id: number;
+    year: number;
+    system: string;
+    title: string;
+    question: string;
+    script: string;
+    expectations: string;
+}
