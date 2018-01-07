@@ -3,7 +3,12 @@ import { NativeStorage } from "@ionic-native/native-storage";
 import 'rxjs/add/operator/map';
 
 import { VersionDataModel, IVersionData } from "../models/version.model";
-import { Observable } from 'rxjs/Observable';
+
+import { ICard } from "../../common/card.model";
+import { IScenario } from "../../common/osce.model";
+import { IUsefulLink } from "../../common/usefulLink.model";
+import { IYouTubeVideo } from "../../common/youtube.model";
+
 /*
   Generated class for the DatabaseServiceProvider provider.
 
@@ -13,7 +18,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class DatabaseServiceProvider {
 
-  public DATABASE_INIT_SEED: VersionDataModel = {
+  private DATABASE_INIT_SEED: VersionDataModel = {
     cards: 0,
     osce_scenarios: 0,
     useful_links: 0,
@@ -32,6 +37,14 @@ export class DatabaseServiceProvider {
 
   public initLocalDB() {
     return this.nativeStorage.setItem("versions", this.DATABASE_INIT_SEED);
+  }
+
+  public setLocalCards(cardObjectArray: ICard[]) {
+    return this.nativeStorage.setItem("cards", cardObjectArray);
+  }
+
+  public setLocalDBVersion(input): Promise<any> {
+    return this.nativeStorage.setItem("versions", input);
   }
 
 }
