@@ -28,6 +28,9 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
 import { TabsService } from "../providers/tabs.service";
 import { AnalyticsServiceProvider } from '../providers/analytics-service/analytics-service';
 import { DatabaseServiceProvider } from '../providers/database-service/database-service';
+import { RemoteServiceProvider } from "../providers/remote-service/remote-service";
+
+import { VersionDataModel } from "../providers/models/version.model";
 import { UpdateServiceProvider } from '../providers/update-service/update-service';
 
 @NgModule({
@@ -82,8 +85,10 @@ import { UpdateServiceProvider } from '../providers/update-service/update-servic
     GoogleAnalytics,
     AnalyticsServiceProvider,
     DatabaseServiceProvider,
-    UpdateServiceProvider,
-    NativeStorage
+    RemoteServiceProvider,
+    NativeStorage,
+    VersionDataModel,
+    UpdateServiceProvider
   ]
 })
 export class AppModule { }
