@@ -1,17 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
 
 import { DatabaseServiceProvider } from "../database-service/database-service";
-import { Observable } from 'rxjs/Observable';
+import { RemoteServiceProvider } from "../remote-service/remote-service";
 
-import { VersionDataModel, IVersionData } from "../models/version.model";
-
-import { ICard } from "../../common/card.model";
-import { IScenario } from "../../common/osce.model";
-import { IUsefulLink } from "../../common/usefulLink.model";
-import { IYouTubeVideo } from "../../common/youtube.model";
+import { VersionDataModel } from "../models/version.model";
 
 /*
   Generated class for the UpdateServiceProvider provider.
@@ -22,61 +15,57 @@ import { IYouTubeVideo } from "../../common/youtube.model";
 @Injectable()
 export class UpdateServiceProvider {
 
-  // private MANIFEST_URL = "http://commscard.abbeyhc.co.uk/manifest.json";
-  private ROOT_URL = "/data/";
+  localDB: VersionDataModel;
+  remoteDB: VersionDataModel;
 
-  constructor(public http: Http, private dbSrvc: DatabaseServiceProvider) {
-  }
+  constructor(private dbSrvc: DatabaseServiceProvider, private remoteSrvc: RemoteServiceProvider) { }
 
-  /**
-   * Returns Promise with interface IVersionData.
-   * @returns Promise
-   * TODO Replace proxy with http://commscard.abbeyhc.co.uk/manifest.json
-   */
-  public getManifest(): Promise<IVersionData> {
-    return this.http.get(this.ROOT_URL + "/manifest.json").map(res => res.json()).toPromise();
-  }
-
-  public getRemoteCards(): Promise<ICard[]> {
-    return this.http.get(this.ROOT_URL + "/cards.json").map(res => res.json()).toPromise();
-  }
-
-  public getRemoteOSCEScenarios(): Promise<IScenario[]> {
-    return this.http.get(this.ROOT_URL + "/osce_scenarios.json").map(res => res.json()).toPromise();
-  }
-
-  public getRemoteUsefulLinks(): Promise<IUsefulLink[]> {
-    return this.http.get(this.ROOT_URL + "/useful_links.json").map(res => res.json()).toPromise();
-  }
-
-  public getRemoteVideos(): Promise<IYouTubeVideo[]> {
-    return this.http.get(this.ROOT_URL + "/videos.json").map(res => res.json()).toPromise();
-  }
-
-  public determineOutdated() {
-    var localDB: IVersionData;
-    var remoteDB: IVersionData;
-
-    var getLocalDBPromise = this.dbSrvc.getLocalDBVersion().then(res => {
-      localDB = res;
+  public initialiseUpdaterService() {
+    Promise.all([
+      this.dbSrvc.getLocalDBVersion().then(res => { this.localDB = res }),
+      this.remoteSrvc.getRemoteManifest().then(res => { this.remoteDB = res })
+    ]).then(() => {
+      this.determineOutdated();
     }).catch(err => {
-      if (err.code === 2) { // If local db is not present
-        this.dbSrvc.initLocalDB().then(res => { console.log("Initialised local db. + " + res) })
-        this.dbSrvc.getLocalDBVersion().then(res => { // Still need to set localDB variable
-          localDB = res;
-        })
-      }
-    });
-
-    var getRemoteDBPromise = this.getManifest().then(res => {
-      remoteDB = res;
-    });
-
-    Promise.all([getLocalDBPromise, getRemoteDBPromise]).then(() => {
-      if (localDB.cards < remoteDB.cards) {
-        // updateCards;
+      if (err.status === 500) {
+        console.warn("CommsCard update server was reached, but threw an error. " + err);
+        return;
+      } else {
+        console.warn("Update Service Failed, possibly an internet connection problem");
+        return;
       }
     });
   }
 
+  private determineOutdated() {
+    console.log(this.localDB);
+    console.log(this.remoteDB);
+
+    if (this.localDB.cards < this.remoteDB.cards) {
+      console.warn("Oudated Cards! Local: " + this.localDB.cards + ", Remote: " + this.remoteDB.cards);
+      console.warn("Fetching cards");
+      this.remoteSrvc.getRemoteCards().then(res => {
+        this.dbSrvc.setLocalCards(res);
+      }).catch(err => {
+        console.error("An error occured whilst getting card update file. " + err);
+        return;
+      }).then(() => {
+        this.localDB.cards = this.remoteDB.cards;
+        this.dbSrvc.setLocalDBVersion(this.localDB);
+      });
+    }
+
+    if (this.localDB.osce_scenarios < this.remoteDB.osce_scenarios) {
+      console.warn("Oudated OSCE Scenarios! Local: " + this.localDB.osce_scenarios + ", Remote: " + this.remoteDB.osce_scenarios);
+    }
+
+    if (this.localDB.useful_links < this.remoteDB.useful_links) {
+      console.warn("Oudated Useful Links! Local: " + this.localDB.useful_links + ", Remote: " + this.remoteDB.useful_links);
+    }
+
+    if (this.localDB.videos < this.remoteDB.videos) {
+      console.warn("Oudated Videos! Local: " + this.localDB.videos + ", Remote: " + this.remoteDB.videos);
+    }
+
+  }
 }
