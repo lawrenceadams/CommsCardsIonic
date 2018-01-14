@@ -80,17 +80,18 @@ export class StudyFlashCardsPage {
   loader;
 
   ionViewDidLoad() {
+    this.initialiseCardSearch();
+  }
+
+  private initialiseCardSearch() {
     // Set default sort option to year
     // Other options: system, type.
     this.selectedQuery = "year";
     this.sortCardsBy = "year";
-
     // Loading screen for initial load
     this.showLoader();
-
     this.service.setQuery(this.selectedQuery, ["1", "2", "3"]);
     this.foundCards = this.service.getCards();
-
     this.updateSelectSuboptions(this.selectedQuery);
   }
 
