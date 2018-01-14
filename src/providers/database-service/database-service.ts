@@ -9,6 +9,11 @@ import { IScenario } from "../../common/osce.model";
 import { IUsefulLink } from "../../common/usefulLink.model";
 import { IYouTubeVideo } from "../../common/youtube.model";
 
+import { FLASHCARDS } from "../../common/card.store";
+// import { OSCE_SCENARIOS } from "../../common/osce.store";
+// import { USEFULLINKS } from "../../common/usefulLink.store";
+// import { YOUTUBEVIDEOS } from "../../common/youtube.store";
+
 /*
   Generated class for the DatabaseServiceProvider provider.
 
@@ -32,10 +37,27 @@ export class DatabaseServiceProvider {
    * Gets the version of the local databases from native local storage.
    */
   public getLocalDBVersion(): Promise<IVersionData> {
-    return this.nativeStorage.getItem("versions");
+    // return this.nativeStorage.getItem("versions");
+
+    return new Promise<IVersionData>((resolve, reject) => {
+      this.nativeStorage.getItem("versions").then(res => {
+        resolve(res);
+      }).catch(err => {
+        if (err.code === 2) {
+          this.initLocalDB();
+          console.warn("No local database. Creating...")
+          this.nativeStorage.getItem("versions").then(res => {
+            resolve(res);
+          });
+        } else {
+          reject(err);
+        }
+      })
+    })
   }
 
-  public initLocalDB() {
+  private initLocalDB() {
+    this.setLocalCards(FLASHCARDS);
     return this.nativeStorage.setItem("versions", this.DATABASE_INIT_SEED);
   }
 
@@ -43,8 +65,12 @@ export class DatabaseServiceProvider {
     return this.nativeStorage.setItem("cards", cardObjectArray);
   }
 
-  public setLocalDBVersion(input): Promise<any> {
+  public setLocalDBVersion(input: VersionDataModel): Promise<any> {
     return this.nativeStorage.setItem("versions", input);
+  }
+
+  public getLocalCards(): Promise<ICard[]> {
+    return this.nativeStorage.getItem("cards");
   }
 
 }
