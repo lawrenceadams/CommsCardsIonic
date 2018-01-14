@@ -36,7 +36,7 @@ export class StudyFlashCardsPage {
     { title: "Cardiovascular", internal: "cardio" },
     { title: "Gastroenterology", internal: "gi" },
     { title: "Dermatology", internal: "derm" },
-    // { title: "Musculoskeletal", internal: "msk" }, // No cards currently
+    { title: "Musculoskeletal", internal: "msk" }, // No cards currently
     { title: "Endocrine", internal: "endo" },
     { title: "Child and Family", internal: "paeds" },
     { title: "Ophthalmology", internal: "ophthal" },
